@@ -12,13 +12,21 @@ This function is designed to connect to a repository database of stored user per
 
 ## Usage Examples ##
 
-Get all the permissions from every database on an instance and store them in a repository
+Get all the permissions from every database on an instance and store them in a repository:
+
+`./Get-DatabasePermissions.ps1 -ServerName localhost -RepoServerName localhost -RepoDatabaseName Admin -Verbose`
 
 Get all the permissions from a single database on an instance and store them in a repository
 
+`./Get-DatabasePermissions.ps1 -ServerName localhost -DatabaseName AdventureWorks2014 -RepoServerName localhost -RepoDatabaseName Admin -Verbose`
+
 Reapply all the stored permissions in the repository from the most recent capture for a given instance
 
-Reapply all the stored permissions in the repository from a given capture date for a given instance and specific database
+`$results = .\Set-DatabasePermissions.ps1 -ServerName localhost -RepoServerName localhost -RepoDatabasename Admin`
+
+Reapply all the stored permissions in the repository from a given capture date for a specific database (the results of each attempt are stored in an return object)
+
+`$results = .\Set-DatabasePermissions.ps1 -ServerName localhost -DatabaseName AdventureWorks2014 -RepoServerName localhost -RepoDatabasename Admin`
 
 ## Repository Database Schema ##
 
