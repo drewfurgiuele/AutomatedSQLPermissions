@@ -1,6 +1,6 @@
 # AutomatedSQLPermissions
 
-This repository contains two PowerShell functiosn designed to automate the process of capturing and re-applying database permissions.
+This repository contains two PowerShell functions designed to automate the process of capturing and re-applying database permissions.
 
 #### Get-DatabasePermissions ####
 
