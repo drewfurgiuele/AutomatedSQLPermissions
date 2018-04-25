@@ -23,6 +23,7 @@ begin {
     $RepoInstanceName = $null
     if ($repoServerName.Contains("\")) {
         $RepoInstanceName = $repoServerName.Split("\")[1]
+        $repoServerName = $repoServerName.Split("\")[0]
     } else {
         $RepoInstanceName = 'DEFAULT'
     }
@@ -141,8 +142,9 @@ process {
     $adminConnection = New-Object System.Data.SqlClient.SqlConnection
     if ($repoInstanceName -ne "DEFAULT") { $repoServerName = "$repoServerName\$repoInstanceName" }
     $adminConnectionString = "Server={0};Database={1};Trusted_Connection=True;Connection Timeout=15" -f $repoServerName,$repoDatabaseName
-
+    
     Write-Verbose "Writing capture information to repository database..."    
+    Write-Verbose "Used connection string: $adminConnectionString"
     $bcp = New-Object System.Data.SqlClient.SqlBulkCopy($adminConnectionString)
     $bcp.DestinationTableName = "Permissions.Captures"
     $bcp.BatchSize = 1000
